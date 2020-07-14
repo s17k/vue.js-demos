@@ -32,14 +32,11 @@ const store = new Vuex.Store({
 
             // Examine the text in the response
             response.json().then(function(data) {
-              console.log('data')
-              console.log(data)
               state.rates = data.rates
               for(const key in state.rates) {
                 state.rates[key] *= (0.9+Math.random()/5)
               }
               state.time_last_update_utc = data.time_last_update_utc
-              console.log(state)
            });
         })
         .catch(function(err) {
@@ -47,7 +44,10 @@ const store = new Vuex.Store({
         });
     },
     update_one(state, currency_name) {
-      state.rates[currency_name] *= (-1)
+      //state.rates[currency_name] *= (-1)
+      // This doesn't work on its own
+      //delete state.rates[currency_name]
+      Vue.delete(state.rates, currency_name)
     }
   },
   getters: {
