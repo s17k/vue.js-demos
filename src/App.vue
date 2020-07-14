@@ -44,10 +44,12 @@ const store = new Vuex.Store({
         });
     },
     update_one(state, currency_name) {
-      //state.rates[currency_name] *= (-1)
-      // This doesn't work on its own
+      // This doesn't work on its own, you need to tell Vue
       //delete state.rates[currency_name]
-      Vue.delete(state.rates, currency_name)
+      if(state.rates[currency_name] < 0)
+        Vue.delete(state.rates, currency_name)
+      else
+        state.rates[currency_name] *= (-1)
     }
   },
   getters: {
