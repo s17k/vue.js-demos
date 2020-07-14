@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <img :src="info"><img/>
     <button v-on:click="handleclick">Click Me!</button>
   </div>
