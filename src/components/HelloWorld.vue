@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <img v-bind:src="info"><img/>
+    <img :src="info"><img/>
     <button v-on:click="handleclick">Click Me!</button>
   </div>
 </template>
