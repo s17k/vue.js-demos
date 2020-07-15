@@ -2,12 +2,12 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <CurrencyTable/>
-    <HelloWorld msg="hihi"/>
+    <RandomCat msg="hihi"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import RandomCat from './components/RandomCat.vue'
 import CurrencyTable from './components/CurrencyTable.vue'
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -60,7 +60,7 @@ const store = new Vuex.Store({
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    RandomCat,
     CurrencyTable
   },
   store: store
