@@ -1,6 +1,7 @@
 <template>
-  <div class="hello">
-    <img v-bind:src="info"><img/>
+  <div>
+    <img :src="info"><img/>
+    <button v-on:click="handleclick">Click Me!</button>
   </div>
 </template>
 
@@ -15,27 +16,36 @@ export default {
       info: "Default Value"
     }
   },
+  methods: {
+    handleclick() {
+      this.update_cats()
+    },
+    update_cats() {
+      var self = this
+
+      fetch('https://aws.random.cat/meow')
+        .then(function(response) {
+            if (response.status !== 200) {
+              console.log('Looks like there was a problem. Status Code: ' +
+                response.status);
+              return;
+            }
+
+            // Examine the text in the response
+            response.json().then(function(data) {
+              self.info = data.file
+            });
+        })
+        .catch(function(err) {
+          console.log('Fetch Error :-S', err);
+        });
+    }
+  },
   mounted () {
-    var self = this
-
-    fetch('https://aws.random.cat/meow')
-      .then(function(response) {
-          if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
-            return;
-          }
-
-          // Examine the text in the response
-          response.json().then(function(data) {
-            self.info = data.file
-          });
-      })
-      .catch(function(err) {
-        console.log('Fetch Error :-S', err);
-      });
+    this.update_cats()
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
